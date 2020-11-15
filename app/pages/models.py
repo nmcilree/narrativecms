@@ -7,7 +7,7 @@ class Page(models.Model):
     title = models.CharField(max_length=255, blank=True)
     body = models.TextField(max_length=255, blank=True)
     left = models.IntegerField(blank=True, null=True)
-    right = models.IntegerField(blank=True, null=True)
+    top = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.title
