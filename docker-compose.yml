@@ -30,17 +30,17 @@ services:
     ports:
     - "5432"
   #NGINX container for test compute engine
-  narrative_nginx:
-    container_name: narrative_nginx
-    build: ./containers/nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - narrative_django
-    volumes:
-      - ./media:/media
-      - ./static:/static
+  #narrative_nginx:
+  #  container_name: narrative_nginx
+  #  build: ./containers/nginx
+  #  ports:
+  #    - "80:80"
+  #    - "443:443"
+  #  depends_on:
+  #    - narrative_django
+  #  volumes:
+  #    - ./media:/media
+  #    - ./static:/static
 
 volumes:
   pgdata:
