@@ -72,20 +72,9 @@
 
     }
 
-    #c1{
-      left: 200px;
-      top:100px;
-    }
-
-    #c2{
-      left: 600px;
-      top:300px;
-    }
-
-    #c3{
-      left: 100px;
-      top:400px;
-    }
+      .endpoint{
+        display:none
+      }
 
   </style>
 
@@ -118,28 +107,36 @@
   <!-- Admin functions -->
   <script src="{% static 'js/admin.js' %}"></script>
 
+  <style>
+      .myEndpoint{
+        display:none
+      }
+  </style>
+
   <script>
 
           jsPlumb.bind("ready", function() {
-
             var common = {
-              endpoints:["Rectangle", "Blank" ],
               detachable:false,
-              anchor:"AutoDefault"
+              anchor:"AutoDefault",
+              endpoint:[ "Rectangle", {
+                cssClass:"endpoint",
+                  }],
+              overlays:[
+                  //[ "Label", {label:"FOO", id:"label"}],
+                  [ "Arrow", { width:10, length:30, location:1, id:"arrow" } ],
+               ]
             };
-
-
-
-
-            {% for connector in connectors %}
-            {% if connector.origin %}
-              // The connection linking to the page
-              jsPlumb.connect({source:"page-{{connector.origin.id}}", target:"page-{{connector.page.id}}"}, common);
-            {% endif %}
-
-            {% if connector.destination %}
+        jsPlumb.selectEndpoints().setVisible(false);
+          {% for connector in connectors %}
+            {% if connector.target %}
               // The connection leaving the page
-              jsPlumb.connect({source:"page-{{connector.page.id}}", target:"page-{{connector.destination.id}}"}, common);
+              jsPlumb.connect({
+                source:"page-{{connector.page.id}}",
+                target:"page-{{connector.target.id}}"
+              },
+                common
+              );
             {% endif %}
         {% endfor %}
 
