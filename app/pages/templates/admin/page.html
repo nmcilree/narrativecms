@@ -81,13 +81,8 @@
 
     <div class="container-fluid" id="chapter">
 
-        <h1>Pages</h1>
+        <h1>Page</h1>
 
-            {% for page in pages %}
-                <div id="page-{{page.id}}" class="box" data-id="{{page.id}}" style="top: {{page.top}}px; left:{{page.left}}px">
-                  <b>{{page.title}}: {{ page.id }}</b>
-                </div>
-            {% endfor %}
 
     </div>
 
@@ -100,55 +95,6 @@
 
   <!-- Bootstrap 4 -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
-  <!-- jsPlumb -->
-  <script src="{% static 'node_modules/jsplumb/dist/js/jsplumb.min.js' %}"></script>
-
-  <!-- Admin functions -->
-  <script src="{% static 'js/admin.js' %}"></script>
-
-  <style>
-      .myEndpoint{
-        display:none
-      }
-  </style>
-
-  <script>
-
-          jsPlumb.bind("ready", function() {
-            var common = {
-              detachable:false,
-              anchor:"AutoDefault",
-              endpoint:[ "Rectangle", {
-                cssClass:"endpoint",
-                  }],
-              overlays:[
-                  //[ "Label", {label:"FOO", id:"label"}],
-                  [ "PlainArrow", { width:20, length:25, location:1, id:"arrow" } ],
-               ]
-            };
-        jsPlumb.selectEndpoints().setVisible(false);
-          {% for connector in connectors %}
-            {% if connector.target %}
-              // The connection leaving the page
-              jsPlumb.connect({
-                source:"page-{{connector.page.id}}",
-                target:"page-{{connector.target.id}}",
-                label:"<a href=\"#\">Remove</a>",
-                id:"label",
-              },
-                common
-              );
-            {% endif %}
-        {% endfor %}
-
-        });
-
-
-  </script>
-
-
-
 
 </body>
 </html>

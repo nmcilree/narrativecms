@@ -17,13 +17,14 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
-from pages.views import TestView, update_position
+from pages.views import ChapterView, update_position, PageView
 from django.conf.urls.static import static
 
 
 urlpatterns = [
+    path('admin/chapter/', ChapterView.as_view(), name='chapter'),
+    path('admin/page/', PageView.as_view(), name="page"),
     path('admin/', admin.site.urls),
-    path('test', TestView.as_view(), name='test'),
     path('update_position', update_position, name='test'),
 ]
 

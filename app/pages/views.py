@@ -5,7 +5,7 @@ from .models import Page, PageConnector
 
 
 # Create your views here.
-class TestView(TemplateView):
+class ChapterView(TemplateView):
 
     template_name = "test_view.html"
 
@@ -23,6 +23,10 @@ class TestView(TemplateView):
         context['connectors'] = connectors
         return context
 
+# Create your views here.
+class PageView(TemplateView):
+
+    template_name = "admin/page.html"
 
 def update_position(request):
 
